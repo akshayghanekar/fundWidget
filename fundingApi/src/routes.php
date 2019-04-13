@@ -47,6 +47,7 @@ $app->get('/api/getFundDetails', function ($request, $response, $args) {
    return $this->response->withJson($resp);
 });
 
+// POST request will be made by an application which will be handled here
 $app->post('/api/updateFundDetails', function ($request, $response, $args) {
 
     $input = $request->getParsedBody();
@@ -57,7 +58,7 @@ $app->post('/api/updateFundDetails', function ($request, $response, $args) {
     $details = $fund->fetchAll();  
 
     if(count($details) > 0){  
-        
+        // Calculate receivedamount and increment donor count
         $received = $details[0]['amountReceived'] + $inputFundAmount;        
         $donors = $details[0]['donors'] + 1;
 
@@ -75,6 +76,7 @@ $app->post('/api/updateFundDetails', function ($request, $response, $args) {
    return $this->response->withJson($resp);
 });
 
+// Reset Funds data to restart
 $app->get('/api/resetFundDetails', function ($request, $response, $args) {        
    
     $dbUpdate = $this->db->prepare("UPDATE funinfo SET amountreceived=0, donors=0");
