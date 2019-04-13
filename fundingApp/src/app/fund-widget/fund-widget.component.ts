@@ -32,17 +32,17 @@ export class FundWidgetComponent implements OnInit {
         // Send details to webservice for updation.
         this._shareing.updateFundDetails(this.fundDetails)
         .subscribe(
-          (data) => {      
-              this.giveNowSuccessEvent.emit(true); // notify parnt to get latest data
-
+          (data) => {                  
                // Loader
-              this._shareing.UpdateLoaderValue(false);
+               this._shareing.UpdateLoaderValue(false);
+
+              this.giveNowSuccessEvent.emit(true); // notify parnt to get latest data
           },
           (error) => {
-            this.giveNowSuccessEvent.emit(false); // notify parnt
-
-             // Loader
-              this._shareing.UpdateLoaderValue(false);
+            // Loader
+            this._shareing.UpdateLoaderValue(false);
+            
+            this.giveNowSuccessEvent.emit(false); // notify parnt             
           }
         );  
     }

@@ -57,6 +57,7 @@ export class AppComponent implements OnInit {
     }        
   }
 
+  // Reset DB values to 0
   resetFundData(){
     try{
       // Loader
