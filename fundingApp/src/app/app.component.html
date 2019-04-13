@@ -1,0 +1,40 @@
+<div id="page-wrapper" class="gray-bg">  
+        <div  class="preloader" [style.display]="loading ? 'block' : 'none'">
+                <div class="middle">
+                  <i class="glyphicon glyphicon-cd"></i>
+                </div>
+        </div>          
+    <div class="row">
+      &nbsp;
+    </div>
+    <div class="row">
+        <div class="col-lg-4">
+            <app-fund-widget [fundDetails]="fundDetails" (giveNowSuccessEvent)="onFundDetailsUpdate($event)"></app-fund-widget>
+        </div>
+        <div class="col-lg-4">
+            <app-fund-widget [fundDetails]="fundDetails" (giveNowSuccessEvent)="onFundDetailsUpdate($event)"></app-fund-widget>
+        </div>
+        <div class="col-lg-4">
+            <app-fund-widget [fundDetails]="fundDetails" (giveNowSuccessEvent)="onFundDetailsUpdate($event)"></app-fund-widget>
+        </div>
+    </div>
+    <div class="row">
+        <br/>       
+    </div>
+    <div class="row">
+        <div class="col-lg-12" *ngIf="ErrorText != ''">
+            {{ErrorText}}
+        </div>        
+    </div>
+    <div class="row">
+        <br/>       
+    </div>
+    <div class="row">
+        <br/>       
+    </div>
+    <div class="row">
+        <div class="col-lg-4">
+            <button type="button" class="btn btn-block btn-outline btn-danger" (click)="resetFundData()">Reset Fund Data (Reset DB Values)</button>
+        </div>        
+    </div>    
+</div>
