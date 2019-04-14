@@ -28,6 +28,14 @@ export class FundWidgetComponent implements OnInit {
   // Give now button is clickd, send modified object to server to update donation.
   onFundUpdate(){
     try{
+      // Check whether Amount is less than MinimumAmount or not.
+      if(this.childTextBox.nativeElement.value < this.fundDetails.minimumFundingAmount){
+        // show alert and return control
+        alert("Minimum amount should be " + this.fundDetails.minimumFundingAmount);
+        this.childTextBox.nativeElement.value = this.fundDetails.minimumFundingAmount; // Assign Defult minimum amount
+        return;
+      }
+
       // Update value of Object First, which will be sent to server
       this.fundDetails.minimumFundingAmount = this.childTextBox.nativeElement.value;
 
