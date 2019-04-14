@@ -1,4 +1,4 @@
-import { Component, OnInit,Input, Output, EventEmitter, ChangeDetectionStrategy, ChangeDetectorRef } from '@angular/core';
+import { Component, OnInit,Input, Output, EventEmitter, ChangeDetectionStrategy, ChangeDetectorRef, ViewChild, ElementRef } from '@angular/core';
 import {IfundDetails} from './../model/fundDetails';
 import {DataSharingService} from '../services/data-sharing.service';
 
@@ -15,6 +15,7 @@ export class FundWidgetComponent implements OnInit {
   @Output() giveNowSuccessEvent: EventEmitter<boolean> = new EventEmitter<boolean>();
   progressBar:string; // Update progreebar
   disablePay:boolean = false; // If Fund amount is met with target, then disable Give Now button
+  @ViewChild('childTextBox') childTextBox : ElementRef; // Element ref to get valur of current selected textBox
  
   // Inject dependencies
   constructor(private _cdRef : ChangeDetectorRef,
@@ -26,6 +27,9 @@ export class FundWidgetComponent implements OnInit {
   // Give now button is clickd, send modified object to server to update donation.
   onFundUpdate(){
     try{
+      // Update value of Object First, which will be sent to server
+      this.fundDetails.minimumFundingAmount = this.childTextBox.nativeElement.value;
+
         // Loader
         this._shareing.UpdateLoaderValue(true);
       
@@ -77,7 +81,7 @@ export class FundWidgetComponent implements OnInit {
       this.progressBar = ((this.fundDetails.fundingObtained / this.fundDetails.fundingRequired) * 100).toString();
       
       // Check for remaining amount. if it is greater then disable pay button
-      this.disablePay = (this.fundDetails.fundingObtained > this.fundDetails.fundingRequired)? true:false;
+      this.disablePay = (this.fundDetails.fundingObtained > this.fundDetails.fundingRequired)? true:false;      
     }
     catch{
       // to do error handling

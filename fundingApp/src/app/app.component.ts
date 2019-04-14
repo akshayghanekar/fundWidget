@@ -1,4 +1,4 @@
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import {IfundDetails} from './model/fundDetails';
 import {DataSharingService} from './services/data-sharing.service';
 

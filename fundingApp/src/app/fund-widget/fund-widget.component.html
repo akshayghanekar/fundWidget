@@ -17,7 +17,7 @@
          
         <div class="row">
             <div class="col-sm-6">
-                <input type="text" (keypress)="numberOnly($event)" [(ngModel)]="fundDetails.minimumFundingAmount" class="form-control">
+                <input type="text" (keypress)="numberOnly($event)" [value]="fundDetails.minimumFundingAmount" class="form-control" #childTextBox>
             </div>
             <div class="col-sm-6">
                 <button type="button" [disabled]="disablePay" class="btn btn-w-m btn-primary buttonColor" (click)="onFundUpdate()">Give Now</button>
