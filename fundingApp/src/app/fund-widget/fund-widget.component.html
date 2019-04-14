@@ -4,7 +4,7 @@
 <div class="ibox-title customTootip" *ngIf="disablePay">                                  
     <h5>hurrey !! Total amount received is {{(fundDetails.fundingObtained) | currency : 'USD'}}</h5>                
 </div>
-<span class="arrow"></span>
+<span class="arrow" [style.left.%]="arrowMovement"></span>
 <div class="ibox donationBox">                
     <div class="progress">
         <div [style.width.%]="progressBar" class="progress-bar"></div>

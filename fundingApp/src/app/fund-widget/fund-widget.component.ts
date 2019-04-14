@@ -14,6 +14,7 @@ export class FundWidgetComponent implements OnInit {
   @Input() fundDetails: IfundDetails = <IfundDetails> {};
   @Output() giveNowSuccessEvent: EventEmitter<boolean> = new EventEmitter<boolean>();
   progressBar:string; // Update progreebar
+  arrowMovement : string; // Arrow movement
   disablePay:boolean = false; // If Fund amount is met with target, then disable Give Now button
   @ViewChild('childTextBox') childTextBox : ElementRef; // Element ref to get valur of current selected textBox
  
@@ -81,7 +82,10 @@ export class FundWidgetComponent implements OnInit {
       this.progressBar = ((this.fundDetails.fundingObtained / this.fundDetails.fundingRequired) * 100).toString();
       
       // Check for remaining amount. if it is greater then disable pay button
-      this.disablePay = (this.fundDetails.fundingObtained > this.fundDetails.fundingRequired)? true:false;      
+      this.disablePay = (this.fundDetails.fundingObtained >= this.fundDetails.fundingRequired)? true:false;  
+      
+      // Calculate arrow movement
+      this.arrowMovement = (parseInt(this.progressBar) + 5 < 95 )? (parseInt(this.progressBar) + 5).toString() : "92";
     }
     catch{
       // to do error handling
