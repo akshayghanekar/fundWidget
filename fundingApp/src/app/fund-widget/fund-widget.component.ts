@@ -16,7 +16,7 @@ export class FundWidgetComponent implements OnInit {
   progressBar:string; // Update progreebar
   arrowMovement : string; // Arrow movement
   disablePay:boolean = false; // If Fund amount is met with target, then disable Give Now button
-  @ViewChild('childTextBox') childTextBox : ElementRef; // Element ref to get valur of current selected textBox
+  @ViewChild('childTextBox') childTextBox : ElementRef; // Element ref to get value of current selected textBox
  
   // Inject dependencies
   constructor(private _cdRef : ChangeDetectorRef,
